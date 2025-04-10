@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
-import { ProductRepository } from "/opp/nodejs/productsLayer";
+import { ProductRepository } from "/opt/nodejs/productsLayer";
 import { DynamoDB } from "aws-sdk";
 
 const productsDdb = process.env.PRODUCTS_DDB!;
@@ -26,7 +26,7 @@ export async function handler(event: APIGatewayProxyEvent, context: Context): Pr
         }
     }
 
-    if(event.resource === '/products/{id}') {
+    if (event.resource === '/products/{id}') {
         const productId = event.pathParameters!.id as string;
 
         console.log(`GET /products/${productId}`);
@@ -38,7 +38,7 @@ export async function handler(event: APIGatewayProxyEvent, context: Context): Pr
                 statusCode: 200,
                 body: JSON.stringify(product)
             }
-        } catch(error) {
+        } catch (error) {
             console.error((<Error>error).message);
 
             return {
