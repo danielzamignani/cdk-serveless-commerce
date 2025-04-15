@@ -32,7 +32,7 @@ export async function handler(event: APIGatewayProxyEvent, context: Context): Pr
         console.log(`GET /products/${productId}`);
 
         try {
-            const product = productRepository.getProductById(productId);
+            const product = await productRepository.getProductById(productId);
 
             return {
                 statusCode: 200,
